@@ -16,6 +16,13 @@ interface SyrupType {
   color: string;
 }
 
+interface Option {
+  Name: string;
+  syrup: SyrupType; 
+  creamer: CreamerType; 
+  base: BaseBeverageType; 
+  temp: string;
+}
 type BeverageType = {
   id: string;
   name: string;
@@ -24,4 +31,5 @@ type BeverageType = {
   syrup: SyrupType;
   creamer: CreamerType;
 };
-export type { BaseBeverageType, CreamerType, SyrupType, BeverageType };
+
+export type { Option, BaseBeverageType, CreamerType, SyrupType, BeverageType };

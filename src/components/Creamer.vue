@@ -1,10 +1,16 @@
 <template>
-  <div class="froth">
-    <div v-for=" in 5" class="foam"></div>
+  <div v-if="beverageStore.currentCreamer.name !== 'No Cream'" class="froth">
+    <div v-for=" in 5" class="foam" :style="{ backgroundColor: beverageStore.currentCreamer.color }"></div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+import { useBeverageStore } from "../stores/beverageStore"; // Adjust the import path as necessary
+const beverageStore = useBeverageStore();
+</script>
+
+
 <style lang="scss" scoped>
 .froth {
   overflow: visible;
