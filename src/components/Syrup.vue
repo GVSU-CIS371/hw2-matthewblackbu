@@ -1,8 +1,13 @@
 <template>
-  <div class="syrup"></div>
+  <div v-if="beverageStore.currentSyrup.name !== 'No Syrup'" class="syrup" :style="{ backgroundColor: beverageStore.currentSyrup.color }">
+  </div>
+  
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useBeverageStore } from "../stores/beverageStore"; // Adjust the import path as necessary
+const beverageStore = useBeverageStore();
+</script>
 <style lang="scss" scoped>
 .syrup {
   transform: translateY(400%);

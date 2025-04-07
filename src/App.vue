@@ -1,5 +1,7 @@
 <template>
+  
   <div>
+    
     <Beverage :isIced="beverageStore.currentTemp === 'Cold'" />
     <ul>
       <li>
@@ -15,18 +17,82 @@
             {{ temp }}
           </label>
         </template>
+        <div></div>
+        <template v-for="base in beverageStore.baseType" :key="base">
+          <label>
+            <input
+              type="radio"
+              name="basetype"
+              :id="`r${base.id}`"
+              :value="base"
+              v-model="beverageStore.currentBaseType"
+            />
+            {{ base.name }}
+          </label>
+        </template>
+        <div></div>
+        <template v-for="creamer in beverageStore.creamers" :key="creamer">
+          <label>
+            <input
+              type="radio"
+              name="creamertype"
+              :id="`r${creamer.id}`"
+              :value="creamer"
+              v-model="beverageStore.currentCreamer"
+            />
+            {{ creamer.name }}
+          </label>
+        </template>
+        <div></div>
+        <template v-for="syrup in beverageStore.syrups" :key="syrup">
+          <label>
+            <input
+              type="radio"
+              name="syruptype"
+              :id="`r${syrup.id}`"
+              :value="syrup"
+              v-model="beverageStore.currentSyrup"
+            />
+            {{ syrup.name }}
+          </label>
+        </template>
+        <div></div>
+        
       </li>
     </ul>
-    <input type="text" placeholder="Beverage Name" />
-    <button>🍺 Make Beverage</button>
+
+    <input type="text" placeholder="Beverage Name" v-model="beverageStore.Name" />
+    <button @click="beverageStore.makeBeverage()">🍺 Make Beverage</button>
+    
+    <button @click="beverageStore.resetStore()">Reset Beverages</button>
+    
+    <p></p>
+
+      <template v-for="option in beverageStore.savedBeverages" :key="option.Name">
+        <label>
+          <input
+            type="radio"
+            name="options"
+            :id="`r${option.Name}`"
+            :value="option" 
+            v-model="beverageStore.currentSyrup"
+            @click="beverageStore.showBeverage(option)"
+          />
+          {{ option.Name }}
+        </label>
+      </template>
+
   </div>
   <div id="beverage-container" style="margin-top: 20px"></div>
 </template>
 
 <script setup lang="ts">
+
 import Beverage from "./components/Beverage.vue";
 import { useBeverageStore } from "./stores/beverageStore";
 const beverageStore = useBeverageStore();
+console.log('Current Base Type:', beverageStore.currentBaseType);
+
 </script>
 
 <style lang="scss">
